@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Vehicle mass specification (total realistic vehicle target: 75.9 kg) -->
+  <xacro:property name="robot_mass" value="75.9"/>
+  <xacro:property name="wheel_mass" value="3.5"/>
+  <!-- Total mass of all 14 accessory links (mounts, sensors, turret assembly) -->
+  <xacro:property name="accessories_mass" value="2.76"/>
+  <!-- Body mass dynamically calculated so total vehicle mass equals robot_mass -->
+  <xacro:property name="body_mass" value="${robot_mass - 4*wheel_mass - accessories_mass}"/>
+
+  <!-- Wheel friction parameters -->
+  <xacro:property name="mu1" value="1.0"/>
+  <xacro:property name="mu2" value="0.6"/>
+
+  <!-- Wheel dimensions and placement -->
+  <xacro:property name="wheel_radius" value="0.2286"/>
+  <xacro:property name="wheel_width" value="0.12"/>
+  <xacro:property name="wheel_x" value="0.4690"/>
+  <xacro:property name="wheel_y" value="0.6308"/>
+  <xacro:property name="track" value="${2*wheel_y}"/>
+
+  <!-- Wheel inertia formulas for solid cylinder along rotation axis -->
+  <xacro:property name="w_ixx" value="${wheel_mass*(3*wheel_radius*wheel_radius + wheel_width*wheel_width)/12}"/>
+  <xacro:property name="w_izz" value="${0.5*wheel_mass*wheel_radius*wheel_radius}"/>
+
+</robot>

@@ -1,0 +1,122 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Front Camera1
+        - /Aiming Camera1
+        - /Rear Camera1
+        - /GPS Markers1
+        - /LaserScan1
+        - /RobotModel1
+      Splitter Ratio: 0.5
+    Tree Height: 480
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz_default_plugins/RobotModel
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+      Enabled: true
+      Name: RobotModel
+      Visual Enabled: true
+      Collision Enabled: false
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Front Camera
+      Normalize Range: true
+      Topic:
+        Value: /front_cam/image
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Aiming Camera
+      Normalize Range: true
+      Topic:
+        Value: /aiming_cam/image
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Rear Camera
+      Normalize Range: true
+      Topic:
+        Value: /rear_cam/image
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+      Value: true
+    - Class: rviz_default_plugins/LaserScan
+      Enabled: true
+      Name: LiDAR Scan
+      Topic:
+        Value: /lidar/scan
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+      Size (Pixels): 4
+      Style: Points
+      Color Transformer: FlatColor
+      Color: 255; 40; 40
+      Decay Time: 0
+      Use Fixed Frame: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Marker Topic:
+        Value: /gps/markers
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+      Name: GPS Markers
+      Namespaces:
+        gps: true
+      Queue Size: 100
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: odom
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 7
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.75
+      Yaw: 0.8
+    Saved: ~

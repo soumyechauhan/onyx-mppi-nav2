@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="onyx">
+
+  <!-- Core parameters & visual materials -->
+  <xacro:include filename="properties.xacro"/>
+  <xacro:include filename="materials.xacro"/>
+
+  <!-- Mechanical structure -->
+  <xacro:include filename="chassis.xacro"/>
+  <xacro:include filename="wheel.xacro"/>
+  <xacro:include filename="turret.xacro"/>
+
+  <!-- Sensor payloads -->
+  <xacro:include filename="sensors/camera.xacro"/>
+  <xacro:include filename="sensors/lidar.xacro"/>
+  <xacro:include filename="sensors/imu.xacro"/>
+  <xacro:include filename="sensors/gps.xacro"/>
+
+  <!-- Gazebo physics & simulation plugins -->
+  <xacro:include filename="gazebo.xacro"/>
+
+  <!-- Instantiate base chassis and virtual footprint -->
+  <xacro:chassis/>
+
+  <!-- Camera mount towers -->
+  <xacro:camera_mounts parent="base_link"/>
+
+  <!-- Four-wheel differential / skid-steer drive -->
+  <xacro:wheel name="front_left"  parent="base_link" x="${wheel_x}"  y="${wheel_y}"/>
+  <xacro:wheel name="front_right" parent="base_link" x="${wheel_x}"  y="${-wheel_y}"/>
+  <xacro:wheel name="rear_left"   parent="base_link" x="${-wheel_x}" y="${wheel_y}"/>
+  <xacro:wheel name="rear_right"  parent="base_link" x="${-wheel_x}" y="${-wheel_y}"/>
+
+  <!-- Sensor suite -->
+  <xacro:lidar parent="base_link"/>
+  <xacro:imu parent="base_link"/>
+  <xacro:gps parent="front_camera_mount_link"/>
+
+  <!-- Forward and rear situational cameras -->
+  <xacro:camera_sensor name="front" parent="front_camera_mount_link" xyz="0 0 0.50" rpy="0 0 0"/>
+  <xacro:camera_sensor name="rear" parent="rear_camera_mount_link" xyz="0 0 0.25" rpy="0 0 0"/>
+
+  <!-- Pan/tilt aim turret -->
+  <xacro:turret parent="base_link"/>
+
+  <!-- Simulation backend -->
+  <xacro:gazebo_simulation/>
+
+</robot>

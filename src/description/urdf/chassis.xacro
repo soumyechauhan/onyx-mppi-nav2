@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="chassis">
+    <!-- Virtual footprint on the ground plane (z=0) -->
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_footprint"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://description/meshes/visual/onyx_body.stl"/>
+        </geometry>
+        <material name="body_grey"/>
+      </visual>
+
+      <!-- Multi-box collision representation of rover chassis -->
+      <!-- Main central cabin -->
+      <collision>
+        <origin xyz="-0.0026 0.0019 0.1808" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.5591 0.7059 0.3353"/>
+        </geometry>
+      </collision>
+
+      <!-- Forward chassis & sensor shelf -->
+      <collision>
+        <origin xyz="0.48 0.0 0.12" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.45 0.65 0.16"/>
+        </geometry>
+      </collision>
+
+      <!-- Rear deck & electronics bay -->
+      <collision>
+        <origin xyz="-0.48 0.0 0.12" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.45 0.65 0.16"/>
+        </geometry>
+      </collision>
+
+      <!-- TODO(ankit): confirm CAD mass properties and COM with mech team -->
+      <inertial>
+        <origin xyz="-0.0150 -0.0031 0.1585" rpy="0 0 0"/>
+        <mass value="${body_mass}"/>
+        <inertia ixx="${body_mass*0.0465}" ixy="0.0" ixz="${body_mass*0.0002}"
+                 iyy="${body_mass*0.0516}" iyz="${body_mass*0.0001}" izz="${body_mass*0.0831}"/>
+      </inertial>
+    </link>
+  </xacro:macro>
+
+</robot>
